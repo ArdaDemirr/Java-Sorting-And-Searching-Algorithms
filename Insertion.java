@@ -29,9 +29,11 @@ public class Insertion {
         int[] randomArray = {5,7,9,8,2,3,1,4,6};
         System.out.print("before Sorting: ");
         printArray(randomArray);
-        insertionSort(randomArray);
+        int cost = insertionSort(randomArray);
         System.out.print("After Sorting: ");
         printArray(randomArray);
+        System.out.print("Cost: ");
+        System.out.println(cost);
     }
     private static void printArray(int[] randomArray) {
         for (int i = 0; i < randomArray.length ; i++) 
@@ -40,21 +42,26 @@ public class Insertion {
         }
         System.out.println();
     }
-    private static void insertionSort(int[] randomArray) 
+    private static int insertionSort(int[] randomArray) 
     {
+        int totalFluctuation = 0;
         // start from index 1 because a single element (index 0) is already "sorted"
         for (int i = 1;i<randomArray.length;i++)                // for every element in randomArray;
         {
             int key = randomArray[i];                           // select the current iteration as the key (temp storage)
             int j = i-1;                                        // index of the last element in the sorted part
+
             // shift elements greater than key one position to the right
             while (j >= 0 && randomArray[j] > key)              // while j is bigger tahn -1 (means we are not at the head of array yet) AND the element that j index indicates bigger than temp value
             {
+                totalFluctuation += (randomArray[j] - key);
                 randomArray[j+1] = randomArray[j];              // shift it to one right
                 j--;                                            // reduce the j index value in order to check all the other values until it reaches the beginning of the array
             }
+            
             // place the key in its correct position
             randomArray[j+1] = key;                             // after while loop broken insert temp value key to the space left blank (which is j+1)
         }
+        return totalFluctuation;
     }
 }

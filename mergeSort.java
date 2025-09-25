@@ -26,16 +26,12 @@ public class mergeSort {
     public static void main(String[] args) throws Exception 
     {
         int[] randomArray = {5,7,9,8,2,3,1,4,6};
-
         System.out.print("before Sorting: ");
         printArray(randomArray);
-
         mergeSort(randomArray);                         // Call merge sort
-
         System.out.print("After Sorting: ");
         printArray(randomArray);
     }
-
     private static void printArray(int[] randomArray) {
         for (int i = 0; i < randomArray.length ; i++) 
         {
@@ -43,17 +39,13 @@ public class mergeSort {
         }
         System.out.println();
     }
-
-    // Recursive merge sort function
-    private static void mergeSort(int[] randomArray) 
+    private static void mergeSort(int[] randomArray)    // Recursive merge sort function
     {
         int length = randomArray.length;
-
         if (length <= 1)                    // BASE CASE: arrays of size 1 are already sorted
         {
             return;
         }
-
         int middle = length / 2;           // Find the midpoint
 
         // Create left and right subarrays
@@ -72,15 +64,15 @@ public class mergeSort {
                 rightArray[i - middle] = randomArray[i];
             }
         }
+
         // Recursively sort both halves
         mergeSort(leftArray);
         mergeSort(rightArray);
+
         // Merge the sorted halves back into arr
         merge(leftArray, rightArray, randomArray);
     }
-
-    // Merge two sorted arrays into the original array
-    private static void merge(int[] leftArray, int[] rightArray, int[] OG_Array) 
+    private static void merge(int[] leftArray, int[] rightArray, int[] OG_Array)    // Merge two sorted arrays into the original array
     {
         int leftSize = OG_Array.length / 2;
         int rightSize = OG_Array.length - leftSize;
@@ -104,6 +96,7 @@ public class mergeSort {
                 r++;
             }
         }
+
         // Copy remaining elements from leftArray if any
         while (l < leftSize)
         {
@@ -111,6 +104,7 @@ public class mergeSort {
             i++;
             l++;
         }
+        
         // Copy remaining elements from rightArray if any
         while (r < rightSize)
         {
